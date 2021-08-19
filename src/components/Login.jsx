@@ -1,7 +1,12 @@
 import React,{useState} from 'react'
 import { Form, Button, Card, Alert } from "react-bootstrap"
-import {Link} from 'react-router-dom'
+import {Link,useHistory} from 'react-router-dom'
+import {auth} from '../config/Config'
+
+
 export const Login = () => {
+
+    const history = useHistory()
 
     const [email,setEmail] =useState('')
     const [password,setPassword] =useState('')
@@ -11,13 +16,28 @@ export const Login = () => {
 
     const handleLogin =(e)=>{
         e.preventDefault();
-        console.log(email,password)
+
+        auth.signInWithEmailAndPassword(email,password).then(()=>{
+            setSuccess("login successful")
+            setEmail('')
+            setPassword('')
+            history.push("/")
+        }).catch((err)=>{
+            setError(err.message)   
+        })
     }
     return (
         <div>
         <Card>
             <Card.Body>
-                <h2 className="text-center mb-4">Sign Up</h2>
+                <h2 className="text-center mb-4">Login</h2>
+
+                {success && 
+                    <div class="alert alert-success" role="alert">
+                        {success}
+                    </div>
+                }
+
                 <Form onSubmit={handleLogin}>
 
                     <Form.Group id="email">
@@ -41,6 +61,10 @@ export const Login = () => {
                 </Form>
             </Card.Body>
       </Card>
+      {error && 
+        <div class="alert alert-danger" role="alert">
+            {error}
+        </div>}
     </div>
     )
 }

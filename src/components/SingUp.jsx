@@ -1,25 +1,68 @@
 import React,{useState} from 'react'
 import { Form, Button, Card, Alert } from "react-bootstrap"
-import {Link} from 'react-router-dom'
+import {auth,fs} from '../config/Config'
+import {Link,useHistory} from 'react-router-dom'
 
 export const SignUp = () => {
+
+    const history = useHistory();
+
     const [fullName,setFullName] =useState('')
     const [email,setEmail] =useState('')
     const [password,setPassword] =useState('')
+    const [passwordConfirm,setPasswordConfirm] =useState('')
 
+
+    //message
     const[error,setError]=useState('')
     const[success,setSuccess] = useState('')
 
     const handleSingup =(e)=>{
         e.preventDefault();
-        console.log(fullName,email,password)
+
+        if (password !== passwordConfirm) {
+            return setError("Passwords do not match")
+          }
+
+
+        auth.createUserWithEmailAndPassword(email,password).then((credentials)=>{
+            console.log(credentials)
+            fs.collection('users').doc(credentials.user.uid).set({
+                Fullname: fullName,
+                Email:email,
+                Password:password
+            })
+            .then(()=>{
+                setSuccess("SignUp Successful")
+                setFullName('')
+                setEmail('')
+                setPassword('')
+                setError('')
+                setTimeout(()=>{
+                    setSuccess("")
+                    history.push('/login')  
+                },3000)
+    
+            }).catch(err=>{setError(err.message)})
+        })
+        .catch(err=>{
+            setError(err.message)
+        })
     }
 
     return (
     <div>
+
         <Card>
             <Card.Body>
+                
                 <h2 className="text-center mb-4">Sign Up</h2>
+
+                {success && 
+                    <div class="alert alert-success" role="alert">
+                        {success}
+                    </div>
+                }
                 <Form onSubmit={handleSingup}>
                     <Form.Group>
                     <Form.Label>Full Name</Form.Label>
@@ -35,7 +78,7 @@ export const SignUp = () => {
                     </Form.Group>
                     <Form.Group id="password-confirm">
                     <Form.Label>Password Confirmation</Form.Label>
-                    <Form.Control type="password"  required />
+                    <Form.Control type="password"  onChange={e =>{setPasswordConfirm(e.target.value)}} required />
                     </Form.Group>
                     <br/>
                     <div>
@@ -49,6 +92,10 @@ export const SignUp = () => {
                 </Form>
             </Card.Body>
       </Card>
+      {error && 
+        <div class="alert alert-danger" role="alert">
+            {error}
+        </div>}
     </div>
     )
 }
