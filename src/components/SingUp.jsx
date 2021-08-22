@@ -26,7 +26,7 @@ export const SignUp = () => {
 
 
         auth.createUserWithEmailAndPassword(email,password).then((credentials)=>{
-            console.log(credentials)
+            // console.log(credentials)
             fs.collection('users').doc(credentials.user.uid).set({
                 Fullname: fullName,
                 Email:email,
