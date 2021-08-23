@@ -33,7 +33,7 @@ export const Login = () => {
                 <h2 className="text-center mb-4">Login</h2>
 
                 {success && 
-                    <div class="alert alert-success" role="alert">
+                    <div className="alert alert-success" role="alert">
                         {success}
                     </div>
                 }
@@ -62,7 +62,7 @@ export const Login = () => {
             </Card.Body>
       </Card>
       {error && 
-        <div class="alert alert-danger" role="alert">
+        <div className="alert alert-danger" role="alert">
             {error}
         </div>}
     </div>

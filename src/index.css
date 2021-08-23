@@ -1,4 +1,6 @@
 @import './components/css/product.css';
+@import './components/css/cart.css';
+
 
 body {
   margin: 0;

@@ -1,8 +1,9 @@
 import React from 'react'
-import {Link,useHistory} from 'react-router-dom'
+import {useHistory} from 'react-router-dom'
 import { auth } from '../config/Config'
 import logo from '../public/shop.png'
 import {Nav,Navbar,NavDropdown} from "react-bootstrap"
+import { AiOutlineShoppingCart } from 'react-icons/ai';
 export const Navbar1 = ({user}) => {
 
     const history = useHistory()
@@ -15,33 +16,11 @@ export const Navbar1 = ({user}) => {
 
 
     return (
-        
-        // <div className="navbar ">
-        //     <div className="leftside">
-        //         <div className="logo">
-        //             <img src={logo} height="42" width="42" alt="logo"/>
-        //         </div>
-        //     </div>
-            
-        //     <div className="right side">
-        //         {!user&&
-        //             <>
-        //                 <div><Link to='/login'>Login</Link></div>
-        //                 <div><Link to='/signup'>Sign Up</Link></div>
-        //             </>
-        //         }
-        //         {user&&<>
-        //                 <div><Link to='/login'>{user}</Link></div>
-        //                 <div className="btn btn-danger btn-md" onClick={handleLogout}>Logout</div>
-        //             </>
-        //         }
-        //     </div>
 
-        // </div>
         <>
 
             <Navbar bg="dark" variant="dark" sticky="top" expand="sm" collapseOnSelect fixed="top" >
-                <Navbar.Brand>
+                <Navbar.Brand href="/">
                 <img src={logo} height="42" width="42" alt="logo"/>
                     MyShop
                 </Navbar.Brand>
@@ -62,9 +41,10 @@ export const Navbar1 = ({user}) => {
                         <Nav.Link href="#contact-us">Contact Us</Nav.Link>
                         
                     </Nav>
-                    <Nav className="mr-auto col-md-2">
+                    <Nav className="mr-auto col-md-2.5 ">
                         {user&&
-                            <>
+                            <>  
+                                <Nav.Link href="/cart"><AiOutlineShoppingCart className="mb-1" size={20}/></Nav.Link>
                                 <Nav.Link>{user}</Nav.Link>
                                 <Nav.Link  onClick={handleLogout}>Logout</Nav.Link>
                             </>

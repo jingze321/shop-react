@@ -1,7 +1,6 @@
 import React,{useState,useEffect} from 'react'
-import {BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { auth, fs } from '../config/Config'
-import { Navbar1 } from './Navbar'
+// import { Navbar1 } from './Navbar'
 import {Products} from './Products'
 
 
@@ -79,8 +78,9 @@ function Home(props) {
 
     return (
         <div >
-            <Navbar1 user={user}/>
-            
+            {/* <Navbar1 user={user}/> */}
+            <h1>Home Page</h1>
+            <br/>
             {products.length <1 &&(
                 <div className="container-fluid ">
                     Please wait...
