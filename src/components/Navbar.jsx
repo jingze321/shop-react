@@ -14,7 +14,6 @@ export const Navbar1 = ({user}) => {
         })
     }
 
-
     return (
 
         <>
@@ -41,7 +40,7 @@ export const Navbar1 = ({user}) => {
                         <Nav.Link href="#contact-us">Contact Us</Nav.Link>
                         
                     </Nav>
-                    <Nav className="mr-auto col-md-2.5 ">
+                    <Nav className="mr-auto col-md-3 ">
                         {user&&
                             <>  
                                 <Nav.Link href="/cart"><AiOutlineShoppingCart className="mb-1" size={20}/></Nav.Link>

@@ -20,23 +20,23 @@ function Home(props) {
 
     const uid =GetUserUid()
 
-    function GetUser(){
-        const [user,setUser] =useState(null)
+    // function GetUser(){
+    //     const [user,setUser] =useState(null)
 
-        useEffect(()=>{
-            auth.onAuthStateChanged(user=>{ 
-                if(user){
-                    fs.collection('users').doc(user.uid).get()
-                    .then(snapshot => {setUser(snapshot.data().Fullname)})
-                }else{
-                    setUser(null)
-                }
-            })
-        },[])
-        return user;
-    }
+    //     useEffect(()=>{
+    //         auth.onAuthStateChanged(user=>{ 
+    //             if(user){
+    //                 fs.collection('users').doc(user.uid).get()
+    //                 .then(snapshot => {setUser(snapshot.data().Fullname)})
+    //             }else{
+    //                 setUser(null)
+    //             }
+    //         })
+    //     },[])
+    //     return user;
+    // }
 
-    const user =GetUser();
+    // const user =GetUser();
 
     const [products,setProducts] = useState([]);
 
