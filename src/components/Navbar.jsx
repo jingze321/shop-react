@@ -29,11 +29,11 @@ export const Navbar1 = ({user}) => {
                 <Navbar.Collapse>
                     <Nav className="container-fluid col-md-10">
                         <NavDropdown title="Products">
-                        <NavDropdown.Item href="#products/tea">Tea</NavDropdown.Item>
-                        <NavDropdown.Item href="#products/coffee">Coffee</NavDropdown.Item>
-                        <NavDropdown.Item href="#products/chocolate">Chocolate</NavDropdown.Item>
+                        <NavDropdown.Item href="addproduct">Product1</NavDropdown.Item>
+                        <NavDropdown.Item href="">Product2</NavDropdown.Item>
+                        <NavDropdown.Item href="">Product3</NavDropdown.Item>
                         <NavDropdown.Divider />
-                        <NavDropdown.Item href="#products/promo">Promo</NavDropdown.Item>
+                        <NavDropdown.Item href="">Promo</NavDropdown.Item>
                         </NavDropdown>
                         <Nav.Link href="#blog">Blog</Nav.Link>
                         <Nav.Link href="#about-us">About Us</Nav.Link>
